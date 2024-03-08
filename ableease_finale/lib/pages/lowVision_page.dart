@@ -1,3 +1,4 @@
+import 'package:ableeasefinale/pages/eyeExercise_Game.dart';
 import 'package:flutter/material.dart';
 
 class LowVisionPage extends StatefulWidget {
@@ -10,6 +11,119 @@ class LowVisionPage extends StatefulWidget {
 class _LowVisionPageState extends State<LowVisionPage> {
   @override
   Widget build(BuildContext context) {
+    Widget gameCard(String imgPath, String gName, String lvl) {
+      String gameName = gName;
+      String level = lvl;
+      String imagePath = imgPath;
+      return Container(
+        height: 200,
+        margin: const EdgeInsets.only(top: 45, left: 35, right: 35),
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.primary,
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: const [
+            BoxShadow(
+              color: Color.fromARGB(63, 0, 0, 0),
+              blurRadius: 4.0,
+              spreadRadius: -5.0,
+              offset: Offset(
+                0.0, // horizontal, move right 10
+                8.0, // vertical, move down 10
+              ),
+            )
+          ],
+        ),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 30, left: 30),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        gameName,
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.onPrimary,
+                            fontSize: 22),
+                      ),
+                      Text(
+                        level,
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.onSecondary,
+                            fontSize: 13),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 50, top: 15, right: 15, bottom: 15),
+                    child: Container(
+                      height: 115,
+                      width: 200,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Image(
+                        image: AssetImage(imagePath),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Divider(
+              height: 5,
+              color: Theme.of(context).colorScheme.onSecondary,
+            ),
+            Row(
+              children: [
+                const Padding(padding: EdgeInsets.only(left: 30)),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: const StadiumBorder(),
+                      backgroundColor: Theme.of(context).colorScheme.background,
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const EyeExercise()));
+                    },
+                    child: Row(
+                      children: [
+                        Text("Start",
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onPrimary,
+                              fontSize: 18,
+                            )),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: Theme.of(context).colorScheme.secondary,
+                          size: 18,
+                        )
+                      ],
+                    )),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: Text(
+                    'EST: 3 mins',
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSecondary),
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -44,114 +158,8 @@ class _LowVisionPageState extends State<LowVisionPage> {
               ),
             ),
           ),
-          Container(
-            height: 200,
-            margin: const EdgeInsets.only(top: 45, left: 35, right: 35),
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primary,
-              borderRadius: BorderRadius.circular(15),
-              boxShadow: const [
-                BoxShadow(
-                  color: Color.fromARGB(63, 0, 0, 0),
-                  blurRadius: 4.0,
-                  spreadRadius: -5.0,
-                  offset: Offset(
-                    0.0, // horizontal, move right 10
-                    8.0, // vertical, move down 10
-                  ),
-                )
-              ],
-            ),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 30, left: 30),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Eye Exercise",
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.onPrimary,
-                                fontSize: 22),
-                          ),
-                          Text(
-                            "Level 1",
-                            style: TextStyle(
-                                color:
-                                    Theme.of(context).colorScheme.onSecondary,
-                                fontSize: 13),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 50, top: 10, right: 15, bottom: 10),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10)),
-                          child: const Image(
-                            image: AssetImage("lib/assets/images/eye.png"),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Divider(
-                  height: 5,
-                  color: Theme.of(context).colorScheme.onSecondary,
-                ),
-                Row(
-                  children: [
-                    const Padding(padding: EdgeInsets.only(left: 30)),
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          shape: const StadiumBorder(),
-                          backgroundColor:
-                              Theme.of(context).colorScheme.background,
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const LowVisionPage()));
-                        },
-                        child: Row(
-                          children: [
-                            Text("Start",
-                                style: TextStyle(
-                                  color:
-                                      Theme.of(context).colorScheme.onPrimary,
-                                  fontSize: 18,
-                                )),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              color: Theme.of(context).colorScheme.secondary,
-                              size: 18,
-                            )
-                          ],
-                        )),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 20),
-                      child: Text(
-                        'EST: 3 mins',
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.onSecondary),
-                      ),
-                    )
-                  ],
-                ),
-              ],
-            ),
-          ),
+          // Place Functions Here
+          gameCard("lib/assets/images/eye.png", "Eye Exercise", "Level 1"),
         ],
       ),
     );
