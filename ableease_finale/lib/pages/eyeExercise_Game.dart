@@ -14,7 +14,7 @@ class EyeExercise extends StatefulWidget {
 }
 
 class _EyeExerciseState extends State<EyeExercise> {
-  static const maxSeconds = 60;
+  static const maxSeconds = 30;
   int seconds = maxSeconds;
   bool eyeStart = false;
   String meditationTime = "1 Minutes";
@@ -101,6 +101,39 @@ class _EyeExerciseState extends State<EyeExercise> {
                         child: Image(
                           image: AssetImage("lib/assets/images/eyeGame.png"),
                         )),
+                  ),
+                ),
+                // Hint Text
+                Padding(
+                  padding: const EdgeInsets.only(top: 40),
+                  child: Container(
+                    width: 225,
+                    height: 70,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .secondary
+                          .withOpacity(0.25),
+                      borderRadius: BorderRadius.circular(19),
+                    ),
+                    child: Center(
+                      child: SizedBox(
+                        width: 200,
+                        height: 60,
+                        child: Center(
+                          child: Text(
+                            "Instructions: Move your eyes in the direction specified without moving your head.",
+                            style: TextStyle(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onPrimary
+                                  .withOpacity(0.9),
+                              fontSize: 13,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
                 // Start button

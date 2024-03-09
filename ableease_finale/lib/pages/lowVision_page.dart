@@ -47,16 +47,22 @@ class _LowVisionPageState extends State<LowVisionPage> {
             ),
           ),
           // Place Functions Here
-          gameCard("lib/assets/images/eye.png", "Eye Exercise", "Level 1"),
+          gameCard("lib/assets/images/eye.png", "Eye Exercise", "Level 1", 0,
+              "EST: 30 sec"),
+          gameCard("lib/assets/images/eyeGame.png", "Blink Test    ", "Level 2",
+              1, "EST: 1 mins"),
         ],
       ),
     );
   }
 
-  Widget gameCard(String imgPath, String gName, String lvl) {
+  Widget gameCard(String imgPath, String gName, String lvl, int pgSelector,
+      String estTime) {
     String gameName = gName;
     String level = lvl;
     String imagePath = imgPath;
+    int pageSelector = pgSelector;
+    String estTimeReq = estTime;
     return Container(
       height: 200,
       margin: const EdgeInsets.only(top: 45, left: 35, right: 35),
@@ -130,8 +136,16 @@ class _LowVisionPageState extends State<LowVisionPage> {
                     backgroundColor: Theme.of(context).colorScheme.background,
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const EyeBlink()));
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => switch (pageSelector) {
+                          0 => const EyeExercise(),
+                          1 => const EyeBlink(),
+                          // TODO: Handle this case.
+                          int() => throw UnimplementedError(),
+                        },
+                      ),
+                    );
                   },
                   child: Row(
                     children: [
@@ -154,7 +168,7 @@ class _LowVisionPageState extends State<LowVisionPage> {
               Padding(
                 padding: const EdgeInsets.only(right: 20),
                 child: Text(
-                  'EST: 3 mins',
+                  estTimeReq,
                   style: TextStyle(
                       color: Theme.of(context).colorScheme.onSecondary),
                 ),

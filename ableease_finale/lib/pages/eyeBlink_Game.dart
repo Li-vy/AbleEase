@@ -123,7 +123,7 @@ class EyeBlinkState extends State<EyeBlink> {
                         height: 60,
                         child: Center(
                           child: Text(
-                            "Instructions: Your goal is to blink at least 200 times before the timer runs out!",
+                            "Instructions: Your goal is to blink at least 200 times before the timer runs out !",
                             style: TextStyle(
                               color: Theme.of(context)
                                   .colorScheme
