@@ -3,17 +3,18 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
-class EyeExercise extends StatefulWidget {
-  const EyeExercise({super.key});
+class EyeBlink extends StatefulWidget {
+  const EyeBlink({super.key});
 
   @override
-  State<EyeExercise> createState() => _EyeExerciseState();
+  State<EyeBlink> createState() => EyeBlinkState();
 }
 
-class _EyeExerciseState extends State<EyeExercise> {
+class EyeBlinkState extends State<EyeBlink> {
   static const maxSeconds = 60;
   int seconds = maxSeconds;
   bool eyeStart = false;
@@ -72,7 +73,7 @@ class _EyeExerciseState extends State<EyeExercise> {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 75),
                     child: Text(
-                      "Eye Exercise",
+                      "Blink Text",
                       style: TextStyle(
                           color: Theme.of(context).colorScheme.onPrimary,
                           fontSize: 35),
@@ -90,7 +91,7 @@ class _EyeExerciseState extends State<EyeExercise> {
                       shape: BoxShape.circle,
                       boxShadow: [
                         new BoxShadow(
-                          offset: Offset(2, 2),
+                          offset: const Offset(2, 2),
                           color: Colors.black,
                           blurRadius: 5.0,
                         ),
@@ -103,6 +104,39 @@ class _EyeExerciseState extends State<EyeExercise> {
                         )),
                   ),
                 ),
+                // Hint Text
+                Padding(
+                  padding: const EdgeInsets.only(top: 40),
+                  child: Container(
+                    width: 225,
+                    height: 70,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .secondary
+                          .withOpacity(0.25),
+                      borderRadius: BorderRadius.circular(19),
+                    ),
+                    child: Center(
+                      child: SizedBox(
+                        width: 200,
+                        height: 60,
+                        child: Center(
+                          child: Text(
+                            "Instructions: Your goal is to blink at least 200 times before the timer runs out!",
+                            style: TextStyle(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onPrimary
+                                  .withOpacity(0.9),
+                              fontSize: 13,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
                 // Start button
                 Padding(
                   padding: const EdgeInsets.only(top: 40),
@@ -112,7 +146,6 @@ class _EyeExerciseState extends State<EyeExercise> {
                     onPressed: () {
                       setState(() {
                         eyeStart = true;
-
                         startTimer();
                       });
                     },
@@ -216,39 +249,4 @@ class _EyeExerciseState extends State<EyeExercise> {
             ),
           );
   }
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     appBar: AppBar(
-  //       leading: IconButton(
-  //         onPressed: () {
-  //           Navigator.of(context).pop();
-  //         },
-  //         icon: const Icon(Icons.arrow_back_ios_new_rounded),
-  //       ),
-  //       backgroundColor: Theme.of(context).colorScheme.background,
-  //       elevation: 0,
-  //     ),
-  //     body: Column(
-  //       children: [
-  //         Padding(
-  //           padding: const EdgeInsets.only(top: 70),
-  //           child: Center(
-  //             child: Container(
-  //               width: 250,
-  //               height: 250,
-  //               decoration: BoxDecoration(
-  //                 shape: BoxShape.circle,
-  //                 color: Theme.of(context).colorScheme.primary,
-  //                 image: const DecorationImage(
-  //                   image: AssetImage("lib/assets/images/eyeGame.png"),
-  //                 ),
-  //               ),
-  //             ),
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
 }
